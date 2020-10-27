@@ -1,22 +1,37 @@
 import React, { Component } from "react";
-import Container from "./Container";
-import Row from "./Row";
-import Col from "./Col";
-import Card from "./Card";
-import EmployeeInfo from "./Employee";
+//import Container from "./Container";
+//import Row from "./Row";
+//import Col from "./Col";
+//import Card from "./Card";
+//import Employee from "./Employee";
 import API from "../API";
 
-class EmployeeContainer extends Component {
+class EmployeeInfo extends Component {
 
     state = {
         result:{}
     };
 
     componentDidMount() {
-        API.search().then(res => this.setState({ result: res}))
+        API.search().then(res => this.setState({ result: res.data.results}))
         .catch(err => console.log(err));
-        console.log(res);
     };
-}
+
+    render() {
+
+        const data = this.state.result;
+        console.log(data);
+        return (
+          <div>
+            <h4>
+                worked
+                </h4>
+
+              
+             
+          </div>
+        );
+      }
+    }
 
 export default EmployeeInfo;
