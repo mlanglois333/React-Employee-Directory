@@ -6,6 +6,7 @@ function SearchResults(props) {
       console.log(props),
     <div>
       {props.results.map(result => (
+          
 
           <Card header = {result.name.first + " " + result.name.last} detail= {
           <ul key={result.id.value}>
@@ -18,6 +19,7 @@ function SearchResults(props) {
         
         </ul>}>
         </Card>
+        
       ))}
     </div>
   );

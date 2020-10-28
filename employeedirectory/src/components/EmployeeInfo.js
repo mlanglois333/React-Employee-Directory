@@ -39,7 +39,7 @@ class EmployeeInfo extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col size="md-12">
+                        <Col size="md-8">
                             <SearchResults results={result} />
 
                         </Col>
