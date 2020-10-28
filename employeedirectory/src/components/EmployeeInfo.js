@@ -64,14 +64,20 @@ class EmployeeInfo extends Component {
 
 
         }
+        console.log(tempData);
         switch (alph) {
             case "none":
                 break;
             case "ascend":
-                tempData.name.last.sort();
+                tempData.sort((a,b)=>{ 
+                    if (a.name.last > b.name.last) 
+                    return 1;
+                    if (a.name.last < b.name.last)
+                    return -1;
+                    return 0;
+                });
                 break;
             case "descend":
-                tempData.name.last.sort();
                 tempData.reverse();
 
                 break;
