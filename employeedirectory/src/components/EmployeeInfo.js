@@ -6,6 +6,7 @@ import Col from "./Col";
 import SearchResults from "./SearchResults";
 import OptionsForm from "./OptionsForm"
 
+
 class EmployeeInfo extends Component {
 
     state = {
@@ -43,6 +44,14 @@ class EmployeeInfo extends Component {
         const gend = g;
         const alph = a;
         let tempData; 
+        function ascend(){tempData.sort((a,b)=>{ 
+            if (a.name.last > b.name.last) 
+            return 1;
+            if (a.name.last < b.name.last)
+            return -1;
+            return 0;});
+        }
+
         this.setState({gender: gend});
         this.setState({sort: alph});
 
@@ -69,15 +78,10 @@ class EmployeeInfo extends Component {
             case "none":
                 break;
             case "ascend":
-                tempData.sort((a,b)=>{ 
-                    if (a.name.last > b.name.last) 
-                    return 1;
-                    if (a.name.last < b.name.last)
-                    return -1;
-                    return 0;
-                });
+                ascend();
                 break;
             case "descend":
+                ascend();
                 tempData.reverse();
 
                 break;
