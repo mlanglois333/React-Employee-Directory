@@ -20,7 +20,7 @@ class EmployeeInfo extends Component {
 
     componentDidMount() {
         axios.get("https://randomuser.me/api/?results=20&nat=us")
-            .then(res => this.setState({ result: res.data.results, isLoading:false }))
+            .then(res => this.setState({ result: res.data.results, isLoading:false, dataToRender: res.data.results }))
             .catch(err => console.log(err));
 
     };
@@ -34,14 +34,40 @@ class EmployeeInfo extends Component {
       handleInputChange = event => {
         const value = event.target.value;
         const name = event.target.name;
+        let tempData;
         this.setState({
           [name]: value
         });
+
+        switch(this.state.gender) {
+            case "none":
+              tempData=this.state.result;
+              break;
+            case "male":
+              tempData= this.state.result.filter(function(e){return e.gender === "female"});
+              break;
+            case "female":
+              tempData= this.state.result.filter(function(e){return e.gender === "male"});
+              break;
+          }
+          switch(this.state.sort) {
+            case "none":
+              break;
+            case "ascend":
+              tempData.name.last.sort();
+              break;
+            case "descend":
+                tempData.name.last.sort();
+                tempData.reverse();
+              break;      
+          }
+
+          this.setState({dataToRender:tempData});
       
       };
 
     render() {
-        const { isLoading, result} = this.state;
+        const { isLoading, dataToRender} = this.state;
 
         if (isLoading) {
             return <div>
@@ -66,7 +92,7 @@ class EmployeeInfo extends Component {
                     </Row>
                     <Row>
                         <Col size="md-8">
-                            <SearchResults results={result} />
+                            <SearchResults results={dataToRender} />
 
                         </Col>
                         <Col size="md-4">
