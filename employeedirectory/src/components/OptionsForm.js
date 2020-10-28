@@ -10,7 +10,7 @@ function OptionsForm(props) {
 
                 <br></br>
 
-                <select name="gender" id="gender"  onChange={props.handleInputChange}>
+                <select name="gender" id="gender">
                     <option value="none">none</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -20,14 +20,14 @@ function OptionsForm(props) {
                 <label>Alphabetical</label>
                 <br></br>
 
-                <select name="sort" id="sort" onChange={props.handleInputChange}>
+                <select name="sort" id="sort">
                     <option value="none">none</option>
                     <option value="ascend">A-Z</option>
                     <option value="descend">Z-A</option>
                 </select>
                 <br></br>
 
-                <button type="submit">Submit</button>
+                <button type="submit" >Submit</button>
             </form>
 
 

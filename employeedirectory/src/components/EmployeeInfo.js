@@ -15,59 +15,76 @@ class EmployeeInfo extends Component {
         sort: "none",
         dataToRender: undefined,
 
-        
+
     };
 
     componentDidMount() {
         axios.get("https://randomuser.me/api/?results=20&nat=us")
-            .then(res => this.setState({ result: res.data.results, isLoading:false, dataToRender: res.data.results }))
+            .then(res => this.setState({ result: res.data.results, isLoading: false, dataToRender: res.data.results }))
             .catch(err => console.log(err));
 
     };
 
-    handleSubmit(event)  {
+    handleSubmit=event=>{
+
         event.preventDefault();
-        console.log(event.target.value);
 
-      };
+        const gend = event.target.gender.value;
+        const alph = event.target.sort.value;
 
-      handleInputChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
-        let tempData;
-        this.setState({
-          [name]: value
-        });
+    this.handleInputChange(gend, alph);
 
-        switch(this.state.gender) {
+             
+    
+    }
+
+    handleInputChange(g, a){
+
+        const gend = g;
+        const alph = a;
+        let tempData; 
+        this.setState({gender: gend});
+        this.setState({sort: alph});
+
+    
+        switch (gend) {
             case "none":
-              tempData=this.state.result;
-              break;
+                tempData = this.state.result;
+                break;
             case "male":
-              tempData= this.state.result.filter(function(e){return e.gender === "female"});
-              break;
+                tempData = this.state.result.filter(function (e) { return e.gender === "male" });
+                break;
             case "female":
-              tempData= this.state.result.filter(function(e){return e.gender === "male"});
-              break;
-          }
-          switch(this.state.sort) {
+                tempData = this.state.result.filter(function (e) { return e.gender === "female" });
+                break;
+            default:
+                tempData = this.state.result;
+
+
+
+
+        }
+        switch (alph) {
             case "none":
-              break;
+                break;
             case "ascend":
-              tempData.name.last.sort();
-              break;
+                tempData.name.last.sort();
+                break;
             case "descend":
                 tempData.name.last.sort();
                 tempData.reverse();
-              break;      
-          }
 
-          this.setState({dataToRender:tempData});
-      
-      };
+                break;
+        }
+
+        this.setState({ dataToRender: tempData });
+
+
+    }
+
 
     render() {
-        const { isLoading, dataToRender} = this.state;
+        const { isLoading, dataToRender } = this.state;
 
         if (isLoading) {
             return <div>
@@ -78,9 +95,9 @@ class EmployeeInfo extends Component {
         }
         else {
             //const male = result.filter(result.gender === "male");
-           // const female = result.filter(result.gender === "female");
+            // const female = result.filter(result.gender === "female");
             //const ascend = result.name.last.sort();
-           // const descend = ascend.reverse();
+            // const descend = ascend.reverse();
             return <div>
                 <Container>
                     <Row>
@@ -96,11 +113,9 @@ class EmployeeInfo extends Component {
 
                         </Col>
                         <Col size="md-4">
-                            <OptionsForm 
-                            handleSubmit= {this.handleSubmit}
-                            handleInputChange ={this.handleInputChange}
-                            gender={this.state.gender}
-                            sort={this.state.sort}/>
+                            <OptionsForm
+                                handleSubmit={this.handleSubmit}
+                                />
                         </Col>
                     </Row>
 
