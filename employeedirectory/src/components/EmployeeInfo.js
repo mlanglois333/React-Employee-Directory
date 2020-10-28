@@ -11,8 +11,8 @@ class EmployeeInfo extends Component {
     state = {
         isLoading: true,
         result: undefined,
-        filter: "",
-        sort: "",
+        gender: "none",
+        sort: "none",
         dataToRender: undefined,
 
         
@@ -24,6 +24,21 @@ class EmployeeInfo extends Component {
             .catch(err => console.log(err));
 
     };
+
+    handleSubmit(event)  {
+        event.preventDefault();
+        console.log(event.target.value);
+
+      };
+
+      handleInputChange = event => {
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState({
+          [name]: value
+        });
+      
+      };
 
     render() {
         const { isLoading, result} = this.state;
@@ -55,7 +70,11 @@ class EmployeeInfo extends Component {
 
                         </Col>
                         <Col size="md-4">
-                            <OptionsForm />
+                            <OptionsForm 
+                            handleSubmit= {this.handleSubmit}
+                            handleInputChange ={this.handleInputChange}
+                            gender={this.state.gender}
+                            sort={this.state.sort}/>
                         </Col>
                     </Row>
 
