@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-//import Container from "./Container";
-//import Row from "./Row";
-//import Col from "./Col";
-//import Card from "./Card";
-//import Employee from "./Employee";
-
-//import Card from "./Card";
+import Container from "./Container";
+import Row from "./Row";
+import Col from "./Col";
 import SearchResults from "./SearchResults";
 
 class EmployeeInfo extends Component {
@@ -34,7 +30,23 @@ class EmployeeInfo extends Component {
         }
         else {
             return <div>
-                <SearchResults results= {result}/>
+                <Container>
+                    <Row>
+                        <Col size="md-12">
+                            <h1 class="jumbotron">
+                                Employee Roster
+                            </h1>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col size="md-12">
+                            <SearchResults results={result} />
+
+                        </Col>
+                    </Row>
+
+
+                </Container>
             </div>
         }
     }

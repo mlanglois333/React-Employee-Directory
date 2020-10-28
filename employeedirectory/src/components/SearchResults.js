@@ -1,23 +1,25 @@
 import React from "react";
+import Card from "./Card";
 
 function SearchResults(props) {
-    console.log(props.results);
-    const info = "";
   return (
-    <ul className="list-group search-results">
+      console.log(props),
+    <div>
       {props.results.map(result => (
-          console.log(result),
-        <li key={result.name.first} className="list-group-item">
-            <p>Name: {result.name.first}  {result.name.last}</p>
-            <br></br>
-            <p>Gender: {result.gender}</p>
-            <br></br>
-            <p>Email: {result.email}</p>
-            <br></br>
-            <p>Location: {result.location.city}</p>
-        </li>
+
+          <Card header = {result.name.first + " " + result.name.last} detail= {
+          <ul key={result.id.value}>
+        
+            <li key={result.gender} className="list-group-item">Gender: {result.gender}</li>
+            
+            <li key={result.email} className="list-group-item">Email: {result.email}</li>
+            
+            <li key={result.location.city} className="list-group-item">Location: {result.location.city} , {result.location.state}</li>
+        
+        </ul>}>
+        </Card>
       ))}
-    </ul>
+    </div>
   );
 }
 
