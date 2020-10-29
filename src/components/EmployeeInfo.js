@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Container from "./Container";
 import Row from "./Row";
 import Col from "./Col";
 import SearchResults from "./SearchResults";
 import OptionsForm from "./OptionsForm"
+import App from "./App";
 
 class EmployeeInfo extends Component {
 
@@ -19,7 +19,7 @@ class EmployeeInfo extends Component {
     };
 
     componentDidMount() {
-        axios.get("https://randomuser.me/api/?results=20&nat=us")
+        App.get("https://randomuser.me/api/?results=20&nat=us")
             .then(res => this.setState({ result: res.data.results, isLoading: false, dataToRender: res.data.results }))
             .catch(err => console.log(err));
 
@@ -61,10 +61,8 @@ class EmployeeInfo extends Component {
                 tempData = this.state.result;
 
 
-
-
         }
-        console.log(tempData);
+     
         switch (alph) {
             case "none":
                 break;
