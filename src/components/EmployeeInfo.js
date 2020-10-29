@@ -4,7 +4,7 @@ import Row from "./Row";
 import Col from "./Col";
 import SearchResults from "./SearchResults";
 import OptionsForm from "./OptionsForm"
-import App from "./App";
+import API from "../API";
 
 class EmployeeInfo extends Component {
 
@@ -19,7 +19,7 @@ class EmployeeInfo extends Component {
     };
 
     componentDidMount() {
-        App.get("https://randomuser.me/api/?results=20&nat=us")
+        API.search
             .then(res => this.setState({ result: res.data.results, isLoading: false, dataToRender: res.data.results }))
             .catch(err => console.log(err));
 
