@@ -19,7 +19,7 @@ class EmployeeInfo extends Component {
     };
 
     componentDidMount() {
-        API.search
+        API()
             .then(res => this.setState({ result: res.data.results, isLoading: false, dataToRender: res.data.results }))
             .catch(err => console.log(err));
 
@@ -43,8 +43,6 @@ class EmployeeInfo extends Component {
         const gend = g;
         const alph = a;
         let tempData; 
-        this.setState({gender: gend});
-        this.setState({sort: alph});
 
     
         switch (gend) {
@@ -76,8 +74,15 @@ class EmployeeInfo extends Component {
                 });
                 break;
             case "descend":
+                tempData.sort((a,b)=>{ 
+                    if (a.name.last > b.name.last) 
+                    return 1;
+                    if (a.name.last < b.name.last)
+                    return -1;
+                    return 0;});
                 tempData.reverse();
-
+                break;
+                default:
                 break;
         }
 
@@ -98,10 +103,7 @@ class EmployeeInfo extends Component {
             </div>
         }
         else {
-            //const male = result.filter(result.gender === "male");
-            // const female = result.filter(result.gender === "female");
-            //const ascend = result.name.last.sort();
-            // const descend = ascend.reverse();
+
             return <div>
                 <Container>
                     <Row>
