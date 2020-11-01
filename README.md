@@ -1,5 +1,7 @@
 # React Employee Directory
 
+<img src="./public/readmeimg.png" alt="screenshot of ap">
+
 Click <a href="https://mlanglois333.github.io/React-Employee-Directory/">here</a> to see it in action on Github Pages!
 
 ## User Story
